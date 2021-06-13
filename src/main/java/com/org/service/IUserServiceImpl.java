@@ -15,7 +15,7 @@ import com.org.repository.IUserRepository;
 public class IUserServiceImpl implements IUserService {
 
 	@Autowired
-	private IUserRepository User_Repository;
+	private IUserRepository userRepository;
 
 	/*
 	 * Add User
@@ -23,27 +23,25 @@ public class IUserServiceImpl implements IUserService {
 	@Override
 	public User addUser(User user) {
 		// TODO Auto-generated method stub
-		return User_Repository.save(user);
+		return userRepository.save(user);
 	}
-
 
 	/*
 	 * Get User details
 	 */
 	public User getUserDetailsByUserName(String username) throws InvalidUsernameException {
-		return User_Repository.findById(username).orElseThrow(() -> new InvalidUsernameException("username not found"));
+		return userRepository.findById(username).orElseThrow(() -> new InvalidUsernameException("username not found"));
 
 	}
-
 
 	/*
 	 * Delete User
 	 */
 	@Override
 	public void deleteUser(String username) throws InvalidUsernameException {
-		Optional<User> findUserByusername = User_Repository.findById(username);
+		Optional<User> findUserByusername = userRepository.findById(username);
 		if (findUserByusername.isPresent()) {
-			User_Repository.deleteById(username);
+			userRepository.deleteById(username);
 		} else
 			throw new InvalidUsernameException("Username Not Found to Delete");
 	}
@@ -53,9 +51,9 @@ public class IUserServiceImpl implements IUserService {
 	 */
 	@Override
 	public int updatePassword(String username, String newPassword) throws InvalidUsernameException {
-		Optional<User> findBusOperatorByUsername = User_Repository.findById(username);
+		Optional<User> findBusOperatorByUsername = userRepository.findById(username);
 		if (findBusOperatorByUsername.isPresent()) {
-			return User_Repository.updatePassoword(username, newPassword);
+			return userRepository.updatePassoword(username, newPassword);
 		} else
 			throw new InvalidUsernameException("User username not exists!!");
 
