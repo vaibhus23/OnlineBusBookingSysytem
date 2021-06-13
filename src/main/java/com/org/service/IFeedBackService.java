@@ -1,14 +1,14 @@
 package com.org.service;
 
-import com.org.entities.FeedBack;
+import com.org.entities.Passenger;
 
-public interface IFeedBackService {
-	public FeedBack addFeedBack(FeedBack feedback);
+public interface IPassengerService {
 
-	public FeedBack updateFeedBack(FeedBack feedback);
+	public Passenger addPassenger(Passenger passenger);
 
-	public FeedBack getFeedBackDetailsById(int feedbackId) throws Exception;
+	public Passenger updatePassenger(Passenger passenger);
 
-	public void deleteFeedBackById(int feedbackId);
+	public Passenger getPassengerDetailsById(int passengerId) throws Exception;
 
+	public void deletePassengerById(int passengerId);
 }
