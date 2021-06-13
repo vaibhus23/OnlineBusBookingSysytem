@@ -23,13 +23,13 @@ public class Booking {
 	@Column(name = "busnumber")
 	private String busNumber;
 
-	@Column(name = "numberofseats")
+	@Column(name = "numberofseats", nullable = false)
 	private int numberOfSeats;
 
-	@Column(name = "amountpaid")
+	@Column(name = "amountpaid", nullable = false)
 	private int amountPaid;
 
-	@Column(name = "bookingdate")
+	@Column(name = "bookingdate", nullable = false)
 	private LocalDate date;
 
 	@Column(name = "journeystarttime")
@@ -38,10 +38,10 @@ public class Booking {
 	@Column(name = "journeyendtime")
 	private LocalDateTime journeyEndTime;
 
-	@Column(name = "source")
+	@Column(name = "source" ,nullable = false)
 	private String source;
 
-	@Column(name = "destination")
+	@Column(name = "destination", nullable = false)
 	private String destination;
 
 	public String getSource() {
