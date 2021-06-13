@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.org.entities.Passenger;
 import com.org.service.IPassengerServiceImpl;
 
+/*
+ * Passenger Controller
+ */
 @RestController
 @RequestMapping("/passenger")
 public class PassengerController {
@@ -22,24 +25,36 @@ public class PassengerController {
 	@Autowired
 	IPassengerServiceImpl passenger_service;
 
+	/*
+	 * Add Passenger
+	 */
 	@PostMapping("/add")
 	public ResponseEntity<Passenger> insertpassenger(@RequestBody Passenger passenger) {
-		passenger = passenger_service.addBooking(passenger);
+		passenger = passenger_service.addPassenger(passenger);
 		return new ResponseEntity<Passenger>(passenger, HttpStatus.OK);
 	}
 
+	/*
+	 * Get Details By passenger Id
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Passenger> getpassengerDetailsById(@PathVariable int id) throws Exception {
 		Passenger passenger = passenger_service.getPassengerDetailsById(id);
 		return new ResponseEntity<Passenger>(passenger, HttpStatus.OK);
 	}
 
+	/*
+	 * Update Passenger
+	 */
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Passenger> updatePassenger(@RequestBody Passenger passenger) {
 		passenger = passenger_service.updatePassenger(passenger);
 		return new ResponseEntity<Passenger>(passenger, HttpStatus.OK);
 	}
 
+	/*
+	 * Delete Passenger
+	 */
 	@DeleteMapping("/deletepassenger/{id}")
 	public void deletepassengerByID(@PathVariable("id") int passengerId) {
 		passenger_service.deletePassengerById(passengerId);
