@@ -21,7 +21,9 @@ import com.org.entities.Booking;
 import com.org.exceptions.InvalidBookingIdException;
 import com.org.service.IBookingServiceImpl;
 
-
+/*
+ * Booking Controller
+ */
 @RestController
 @RequestMapping("/booking")
 public class BookingController {
@@ -29,45 +31,64 @@ public class BookingController {
 	@Autowired
 	IBookingServiceImpl booking_service;
 
+	/*
+	 * add booking
+	 */
 	@PostMapping("/add")
 	public ResponseEntity<Booking> insertBooking(@RequestBody Booking booking) {
 		booking = booking_service.addBooking(booking);
 		return new ResponseEntity<Booking>(booking, HttpStatus.OK);
 	}
 
+	/*
+	 * get booking details by id
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<Booking> getBookingDetailsById(@PathVariable int id) throws Exception {
 		Booking booking = booking_service.getBookingDetailsById(id);
 		return new ResponseEntity<Booking>(booking, HttpStatus.OK);
 	}
 
+	/*
+	 * update booking
+	 */
 	@PutMapping("/updateBooking")
-	
 	public void modifyBooking(@RequestBody Booking updateBooking) throws InvalidBookingIdException {
 		booking_service.updateBooking(updateBooking);
 	}
-	
+
+	/*
+	 * Delete booking by id
+	 */
 	@DeleteMapping("/deleteBooking/{id}")
-	
 	public void deleteBookingByID(@PathVariable("id") int bookingId) throws InvalidBookingIdException {
 
 		booking_service.deleteBooking(bookingId);
 	}
-	
+
+	/*
+	 * get booking by username
+	 */
 	@GetMapping("/byUserName/{username}")
 	public List<Booking> getBookingByUserName(@PathVariable String username) {
 		return booking_service.getAllBookingsByUserName(username);
 	}
 
+	/*
+	 * get booking by date
+	 */
 	@GetMapping("/byDate/{date}")
 	public List<Booking> getBookingByDate(
 			@RequestParam("start") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
 		return booking_service.getAllBookingByDate(date);
 	}
-	
+
+	/*
+	 * get booking by bus number
+	 */
 	@GetMapping("/bybusNumber/{busNumber}")
-	public List<Booking> getAllBookingByBusRoute(@PathVariable String busNumber){
+	public List<Booking> getAllBookingByBusRoute(@PathVariable String busNumber) {
 		return booking_service.getAllBookingByBusNumber(busNumber);
-		
+
 	}
 }
