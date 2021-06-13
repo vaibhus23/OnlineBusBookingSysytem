@@ -24,14 +24,14 @@ import com.org.service.IUserServiceImpl;
 public class UserController {
 
 	@Autowired
-	IUserServiceImpl User_service;
+	IUserServiceImpl userService;
 
 	/*
 	 * Add User
 	 */
 	@PostMapping("/add")
 	public User addUser(@RequestBody User user) {
-		return User_service.addUser(user);
+		return userService.addUser(user);
 	}
 
 	/*
@@ -39,7 +39,7 @@ public class UserController {
 	 */
 	@GetMapping("/byUserName/{username}")
 	public User getUserByUserName(@PathVariable String username) throws InvalidUsernameException {
-		return User_service.getUserDetailsByUserName(username);
+		return userService.getUserDetailsByUserName(username);
 	}
 
 	/*
@@ -47,7 +47,7 @@ public class UserController {
 	 */
 	@DeleteMapping("/deletebyUserName/{username}")
 	public void deleteByUserName(@PathVariable String username) throws InvalidUsernameException {
-		User_service.deleteUser(username);
+		userService.deleteUser(username);
 	}
 
 	/*
@@ -55,9 +55,9 @@ public class UserController {
 	 */
 
 	@PutMapping("/update/updatePassword/{username}/{newpassword}")
-	public ResponseEntity<String> updatePassword(@PathVariable String username, @PathVariable String newpassword)
+	public ResponseEntity<String> updatePassword(@PathVariable String username, @PathVariable String newPassword)
 			throws InvalidUsernameException {
-		int count = User_service.updatePassword(username, newpassword);
+		int count = userService.updatePassword(username, newPassword);
 		if (count == 1) {
 			return new ResponseEntity<String>("updated Password", HttpStatus.OK);
 		} else {
