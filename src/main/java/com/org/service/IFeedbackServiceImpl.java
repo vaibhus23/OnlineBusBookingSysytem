@@ -11,25 +11,34 @@ import com.org.repository.IFeedBackRepository;
 public class IFeedbackServiceImpl implements IFeedBackService{
 	@Autowired
 	private IFeedBackRepository FeedBack_Repository;
-
+	
+	/*
+	 * Add Feedback
+	 */
 	@Override
 	public FeedBack addFeedBack(FeedBack feedback) {
 		// TODO Auto-generated method stub
 		return FeedBack_Repository.save(feedback);
 	}
-
+	/*
+	 * Update Feedback
+	 */
 	@Override
 	public FeedBack updateFeedBack(FeedBack feedback) {
 		// TODO Auto-generated method stub
 		return FeedBack_Repository.save(feedback);
 	}
-
+	/*
+	 * Get Feedback
+	 */
 	@Override
 	public FeedBack getFeedBackDetailsById(int feedbackId) throws Exception {
 		// TODO Auto-generated method stub
 		return FeedBack_Repository.findById(feedbackId).orElseThrow(() -> new Exception("Element no Found"));
 	}
-
+	/*
+	 * Delete Feedback
+	 */
 	@Override
 	public void deleteFeedBackById(int feedbackId) {
 		// TODO Auto-generated method stub
