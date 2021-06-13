@@ -11,10 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "user2")
@@ -34,7 +32,7 @@ public class User implements Serializable {
 	/*
 	 * One to Many Relation Between User and Booking
 	 */
-
+	@JsonIgnore
 	@JoinColumn(name = "username")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Booking.class)
 	private List<Booking> booking;
