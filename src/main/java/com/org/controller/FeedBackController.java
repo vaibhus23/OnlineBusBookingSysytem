@@ -21,24 +21,36 @@ public class FeedBackController {
 	@Autowired
 	IFeedbackServiceImpl feedback_service;
 
+	/*
+	 * Add Feedback
+	 */
 	@PostMapping("/add")
 	public ResponseEntity<FeedBack> insertfeedback(@RequestBody FeedBack feedback) {
 		feedback = feedback_service.addFeedBack(feedback);
 		return new ResponseEntity<FeedBack>(feedback, HttpStatus.OK);
 	}
 
+	/*
+	 * Get Feedback
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<FeedBack> getfeedbackDetailsById(@PathVariable int id) throws Exception {
 		FeedBack feedback = feedback_service.getFeedBackDetailsById(id);
 		return new ResponseEntity<FeedBack>(feedback, HttpStatus.OK);
 	}
 
+	/*
+	 * Update feedback
+	 */
 	@PutMapping("/update/{id}")
 	public ResponseEntity<FeedBack> updateFeedBack(@RequestBody FeedBack feedback) {
 		feedback = feedback_service.updateFeedBack(feedback);
 		return new ResponseEntity<FeedBack>(feedback, HttpStatus.OK);
 	}
 
+	/*
+	 * Delete feedback
+	 */
 	@DeleteMapping("/deletefeedback/{id}")
 	public void deletefeedbackByID(@PathVariable("id") int feedbackId) {
 		feedback_service.deleteFeedBackById(feedbackId);
