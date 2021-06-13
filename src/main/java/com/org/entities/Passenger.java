@@ -14,25 +14,25 @@ public class Passenger {
 	@GeneratedValue
 	private int passengerid;
 
-	@Column(name = "identityDocNumber")
+	@Column(name = "identityDocNumber",nullable = false)
 	private long identityDocNumber;
 
 	@Column(name = "username")
 	private String username;
 
-	@Column(name = "firstname")
+	@Column(name = "firstname",nullable = false)
 	private String firstName;
 
-	@Column(name = "lastname")
+	@Column(name = "lastname",nullable = false)
 	private String lastName;
 
-	@Column(name = "phoneNumber")
+	@Column(name = "phoneNumber",nullable = false)
 	private long phoneNumber;
 
-	@Column(name = "email")
+	@Column(name = "email",nullable = false)
 	private String email;
 
-	@Column(name = "identityDocumentName")
+	@Column(name = "identityDocumentName",nullable = false)
 	private String identityDocumentName;
 
 	public int getPassengerid() {
