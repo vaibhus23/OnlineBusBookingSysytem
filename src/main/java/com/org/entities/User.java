@@ -11,14 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "user2")
 public class User implements Serializable {
-
-	/**
+	/*
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -27,19 +28,27 @@ public class User implements Serializable {
 	@Column(name = "username")
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 
-	@JsonIgnore
+	/*
+	 * One to Many Relation Between User and Booking
+	 */
+
 	@JoinColumn(name = "username")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Booking.class)
 	private List<Booking> booking;
 
-	@JsonIgnore
+	/*
+	 * One to Many Relation Between User and Passenger
+	 */
 	@JoinColumn(name = "username")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = Passenger.class)
 	private List<Passenger> passengersInfo;
 
+	/*
+	 * One to Many Relation Between User and Feedback
+	 */
 	@JsonIgnore
 	@JoinColumn(name = "username")
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = FeedBack.class)
