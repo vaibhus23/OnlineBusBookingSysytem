@@ -14,10 +14,10 @@ public class FeedBack {
 	@GeneratedValue
 	private int feedbackid;
 
-	@Column(name = "rating")
+	@Column(name = "rating", nullable = false)
 	private int rating;
 
-	@Column(name = "comment1")
+	@Column(name = "comment1", nullable = false)
 	private String comment;
 
 	@Column(name = "username")
@@ -25,10 +25,6 @@ public class FeedBack {
 
 	@Column(name = "routeName")
 	private String routeName;
-
-//	@JoinColumn(name = "busoperatorid")
-//	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	private BusOperator busOperator;
 
 	public int getFeedbackid() {
 		return feedbackid;
@@ -69,14 +65,5 @@ public class FeedBack {
 	public void setRouteName(String routeName) {
 		this.routeName = routeName;
 	}
-
-//	public BusOperator getBusOperator() {
-//		return busOperator;
-//	}
-//
-//	public void setBusOperator(BusOperator busOperator) {
-//		this.busOperator = busOperator;
-//	} 
-//	
 
 }
