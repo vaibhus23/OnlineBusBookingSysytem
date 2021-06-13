@@ -17,17 +17,28 @@ public class IUserServiceImpl implements IUserService {
 	@Autowired
 	private IUserRepository User_Repository;
 
+	/*
+	 * Add User
+	 */
 	@Override
 	public User addUser(User user) {
 		// TODO Auto-generated method stub
 		return User_Repository.save(user);
 	}
 
+
+	/*
+	 * Get User details
+	 */
 	public User getUserDetailsByUserName(String username) throws InvalidUsernameException {
 		return User_Repository.findById(username).orElseThrow(() -> new InvalidUsernameException("username not found"));
 
 	}
 
+
+	/*
+	 * Delete User
+	 */
 	@Override
 	public void deleteUser(String username) throws InvalidUsernameException {
 		Optional<User> findUserByusername = User_Repository.findById(username);
@@ -37,26 +48,17 @@ public class IUserServiceImpl implements IUserService {
 			throw new InvalidUsernameException("Username Not Found to Delete");
 	}
 
+	/*
+	 * Update User Password
+	 */
 	@Override
-	public int updatePassword(String username, String newPassword) throws InvalidUsernameException{
+	public int updatePassword(String username, String newPassword) throws InvalidUsernameException {
 		Optional<User> findBusOperatorByUsername = User_Repository.findById(username);
 		if (findBusOperatorByUsername.isPresent()) {
 			return User_Repository.updatePassoword(username, newPassword);
 		} else
 			throw new InvalidUsernameException("User username not exists!!");
 
-	}
-
-	@Override
-	public User singIn(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public User singOut(User user) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
