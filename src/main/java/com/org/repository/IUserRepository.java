@@ -8,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 import com.org.entities.User;
 import com.org.exceptions.InvalidUsernameException;
 
+/*
+ * User Repository
+ */
 public interface IUserRepository extends JpaRepository<User, String> {
 
 	@Query(value = "select * from User2 u where u.username=?1", nativeQuery = true)
