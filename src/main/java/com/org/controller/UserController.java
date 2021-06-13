@@ -16,6 +16,9 @@ import com.org.entities.User;
 import com.org.exceptions.InvalidUsernameException;
 import com.org.service.IUserServiceImpl;
 
+/*
+ * User Controller
+ */
 @RestController
 @RequestMapping("/User")
 public class UserController {
@@ -23,21 +26,34 @@ public class UserController {
 	@Autowired
 	IUserServiceImpl User_service;
 
+	/*
+	 * Add User
+	 */
 	@PostMapping("/add")
 	public User addUser(@RequestBody User user) {
 		return User_service.addUser(user);
 	}
 
+	/*
+	 * Get User details By username
+	 */
 	@GetMapping("/byUserName/{username}")
-	public User getUserByUserName(@PathVariable String username)throws InvalidUsernameException {
+	public User getUserByUserName(@PathVariable String username) throws InvalidUsernameException {
 		return User_service.getUserDetailsByUserName(username);
 	}
 
+	/*
+	 * Delete User By username
+	 */
 	@DeleteMapping("/deletebyUserName/{username}")
-	public void deleteByUserName(@PathVariable String username) throws InvalidUsernameException{
-		 User_service.deleteUser(username);
+	public void deleteByUserName(@PathVariable String username) throws InvalidUsernameException {
+		User_service.deleteUser(username);
 	}
-	
+
+	/*
+	 * Update Password Using username
+	 */
+
 	@PutMapping("/update/updatePassword/{username}/{newpassword}")
 	public ResponseEntity<String> updatePassword(@PathVariable String username, @PathVariable String newpassword)
 			throws InvalidUsernameException {
